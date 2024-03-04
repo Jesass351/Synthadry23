@@ -16,7 +16,12 @@ public class PlayerGroundedState : PlayerBaseState
     }
     public override void FixedUpdateState()
     {
-        
+        // workaround for falling w/o jump
+        if (!_context.CharacterController.isGrounded)
+        {
+            _context._currentVelocity.y += _context.gravity * Time.deltaTime;
+            _context.CharacterController.Move(_context._currentVelocity * Time.deltaTime);
+        }
     }
     public override void ExitState()
     {

@@ -8,6 +8,7 @@ public class PlayerIdleState : PlayerBaseState
     public override void EnterState()
     {
         Debug.Log("PState: enter Idle");
+        _context.Animator.SetBool("IsMoving", false);
     }
     public override void UpdateState()
     {

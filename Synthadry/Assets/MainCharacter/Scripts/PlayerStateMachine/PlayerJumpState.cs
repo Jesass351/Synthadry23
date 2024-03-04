@@ -11,7 +11,7 @@ public class PlayerJumpState : PlayerBaseState
     public override void EnterState()
     {
         _context._currentVelocity.y = Mathf.Sqrt(_context.jumpForce * -3.5f * _context.gravity);
-        _context._anim.SetTrigger("Jump");
+        _context.Animator.SetTrigger("Jump");
         Debug.Log("PState: enter Jump");
     }
     public override void UpdateState()

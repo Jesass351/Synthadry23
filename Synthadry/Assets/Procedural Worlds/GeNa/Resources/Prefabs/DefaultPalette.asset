@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c477de684ee10c4082f9fddf19a75ce, type: 3}
   m_Name: DefaultPalette
   m_EditorClassIdentifier: 
-  m_paletteEntryIDCount: -2147483437
+  m_paletteEntryIDCount: -2147483435
   m_paletteEntries:
   - m_name: Pref_Barn1_A
     m_id: -2147483647
@@ -930,4 +930,14 @@ MonoBehaviour:
     m_id: -2147483437
     m_guid: d5e025be3cbc33b4dbe07e685d1370df
     m_object: {fileID: 5350939314242229149, guid: d5e025be3cbc33b4dbe07e685d1370df,
+      type: 3}
+  - m_name: "\u041A\u0443\u043A\u0443\u0440\u0443\u0437\u04301"
+    m_id: -2147483436
+    m_guid: d51d9302f05e4b44a96edfcf567079b2
+    m_object: {fileID: 919132149155446097, guid: d51d9302f05e4b44a96edfcf567079b2,
+      type: 3}
+  - m_name: "\u041A\u0443\u043A\u0443\u0440\u0443\u0437\u04301 Variant"
+    m_id: -2147483435
+    m_guid: e471317c744752242b0e8dd4f30b3ed6
+    m_object: {fileID: 7617222879862483073, guid: e471317c744752242b0e8dd4f30b3ed6,
       type: 3}

@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.InputSystem;
 
 public class InventorySystem : MonoBehaviour
 {
     [SerializeField] private Transform player;
+    [SerializeField] private Canvas canvas;
 
-    private TakeInHand takeInHand;
+    private ItemsIK takeInHand;
     public bool haveHeadlight;
 
     public List<GameObject> mainGuns;
@@ -37,7 +39,8 @@ public class InventorySystem : MonoBehaviour
                     takeInHand.ClearHands();
                     mainGunCounterToggler++;
                 }
-            } else
+            }
+            else
             {
                 if (value <= mainGuns.Count)
                 {
@@ -79,42 +82,57 @@ public class InventorySystem : MonoBehaviour
     public int chemical = 0;
     public int wires = 0;
 
-/*    public void GetActiveMainGun()
-    {
-        foreach (GameObject gun in mainGuns)
+    /*    public void GetActiveMainGun()
         {
-            gun.SetActive(false);
-        }
-        mainGuns[activeMainGun].SetActive(true);
-        mainGuns[activeMainGun].transform.SetParent(mainGunSpawn.transform);
-        mainGuns[activeMainGun].transform.position = mainGunSpawn.transform.position;
-    }*/
+            foreach (GameObject gun in mainGuns)
+            {
+                gun.SetActive(false);
+            }
+            mainGuns[activeMainGun].SetActive(true);
+            mainGuns[activeMainGun].transform.SetParent(mainGunSpawn.transform);
+            mainGuns[activeMainGun].transform.position = mainGunSpawn.transform.position;
+        }*/
 
     // Start is called before the first frame update
     void Start()
     {
         hpAndArmor = player.GetComponent<HPAndArmor>();
-        takeInHand = player.GetComponent<TakeInHand>();
+        takeInHand = player.GetComponent<ItemsIK>();
         weaponSlotManager = GameObject.FindGameObjectWithTag("WeaponSlot").GetComponent<WeaponSlotManager>();
         buffsSlotManager = GameObject.FindGameObjectWithTag("BuffsSlot").GetComponent<BuffsSlotManager>();
         buffsSlotManager.DrawBuffs(hpBuffs.Count, armorBuffs.Count, speedBuffs.Count, activeBuff);
         buffsSlotManager.DrawGrenades(extraGuns.Count);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnBuffChange(InputAction.CallbackContext ctx) //СМЕНА АКТИВНОГО БАФФА
     {
-
-        if (Input.GetKeyDown(KeyCode.Q)) //СМЕНА АКТИВНОГО БАФФА
+        if (ctx.performed)
         {
             activeBuff = (activeBuff + 1) % 3;
             buffsSlotManager.DrawBuffs(hpBuffs.Count, armorBuffs.Count, speedBuffs.Count, activeBuff);
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.X)) //ПРИМЕНЕНИЕ АКТИВНОГО БАФФА
+    public void OnBuffUse(InputAction.CallbackContext ctx) //ПРИМЕНЕНИЕ АКТИВНОГО БАФФА
+    {
+        if (ctx.performed)
         {
             UseBuff(activeBuff);
         }
+    }
+
+    void Update()
+    {
+        // if (Input.GetKeyDown(KeyCode.Q)) //СМЕНА АКТИВНОГО БАФФА
+        // {
+        //     activeBuff = (activeBuff + 1) % 3;
+        //     buffsSlotManager.DrawBuffs(hpBuffs.Count, armorBuffs.Count, speedBuffs.Count, activeBuff);
+        // }
+
+        // if (Input.GetKeyDown(KeyCode.X)) //ПРИМЕНЕНИЕ АКТИВНОГО БАФФА
+        // {
+        //     UseBuff(activeBuff);
+        // }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -132,8 +150,6 @@ public class InventorySystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             ActiveMainGun = 4;
-            
-
         }
 
         if (Input.GetKeyDown(KeyCode.G)) //ВЫКИНУТЬ ПРЕДМЕТ
@@ -145,35 +161,29 @@ public class InventorySystem : MonoBehaviour
 
 
 
-   
+
         }
         if (Input.GetAxis("Mouse ScrollWheel") > 0f) //КОЛЁСИКОМ ВПЕРЁД
         {
             if (mainGuns.Count > 0)
             {
                 ActiveMainGun = (ActiveMainGun + 1) % mainGuns.Count;
-            } else
+            }
+            else
             {
                 ActiveMainGun = 0;
             }
-
-
-
-
         }
         if (Input.GetAxis("Mouse ScrollWheel") < 0f) //КОЛЁСИКОМ НАЗАД
         {
             if (mainGuns.Count > 0)
             {
                 ActiveMainGun = (mainGuns.Count + ActiveMainGun - 1) % mainGuns.Count;
-            } else
+            }
+            else
             {
                 ActiveMainGun = 0;
             }
-
-
-
-
         }
     }
 
@@ -232,23 +242,23 @@ public class InventorySystem : MonoBehaviour
             }
 
         }
-/*        else if (item.GetComponent<ExtraObject>())
-        {
-            if (extraGuns.Count < 9)
-            {
-                Debug.Log("------------");
-                Debug.Log("extraGuns:");
-                extraGuns.Add(item);
+        /*        else if (item.GetComponent<ExtraObject>())
+                {
+                    if (extraGuns.Count < 9)
+                    {
+                        Debug.Log("------------");
+                        Debug.Log("extraGuns:");
+                        extraGuns.Add(item);
 
-                UpdateInventoryUIItems(activeMainGun);
-            }
-            else
-            {
-                Debug.Log("---------");
-                Debug.Log("Дополнительный (гранатный) инвентарь уже полный");
-            }
+                        UpdateInventoryUIItems(activeMainGun);
+                    }
+                    else
+                    {
+                        Debug.Log("---------");
+                        Debug.Log("Дополнительный (гранатный) инвентарь уже полный");
+                    }
 
-        }*/
+                }*/
 
     }
 
@@ -348,7 +358,8 @@ public class InventorySystem : MonoBehaviour
         for (int i = 0; i < component.GetComponent<ComponentsObject>().componentStat.Count; i++)
         {
             string type = component.GetComponent<ComponentsObject>().componentStat[i].type.ToString();
-            switch (type){
+            switch (type)
+            {
                 case "fuel":
                     fuel += component.GetComponent<ComponentsObject>().amount[i];
                     break;

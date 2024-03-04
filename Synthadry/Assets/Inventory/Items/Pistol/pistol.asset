@@ -18,17 +18,17 @@ MonoBehaviour:
   rarity: 2
   iconActive1K: {fileID: 21300000, guid: 808d8ee94f46aff4facf1ad1580cfbff, type: 3}
   iconDisable1K: {fileID: 21300000, guid: 5ec8619c2ea41294e92b4bcf17b4859f, type: 3}
-  positionOffset: {x: -0.17, y: 0.94, z: 0.07}
-  rotationOffset: {x: 0.35, y: 94.7, z: -88.4}
+  positionOffset: {x: -0.36, y: 0.73, z: 0.18}
+  rotationOffset: {x: -0.185, y: 101, z: -83.84}
   downPositionOffset: {x: 0, y: 0, z: 0}
   downRotationOffset: {x: 0, y: 0, z: 0}
   runPositionOffset: {x: 0, y: 0, z: 0}
   runRotationOffset: {x: 0, y: 0, z: 0}
-  righHandIkPosition: {x: -1.26, y: 2.46, z: 2.08}
-  righHandIkRotation: {x: -2.21, y: 22.48, z: 0}
-  righHandIkPositionHint: {x: 0.32, y: -2.24, z: -5.67}
+  righHandIkPosition: {x: -3.08, y: -8.15, z: -1.09}
+  righHandIkRotation: {x: 81.32, y: 179.4, z: 272.6}
+  righHandIkPositionHint: {x: -0.86, y: -1.93, z: 2.73}
   righHandIkRotationHint: {x: 0, y: 0, z: 0}
-  leftHandIkPosition: {x: -0.53, y: 3.28, z: 2.75}
-  leftHandIkRotation: {x: -20.3, y: -81.3, z: 105.2}
-  leftHandIkPositionHint: {x: 2.04, y: -1.86, z: 9.67}
+  leftHandIkPosition: {x: 4.57, y: -11, z: -0.72}
+  leftHandIkRotation: {x: -11.4, y: -195.7, z: 190.6}
+  leftHandIkPositionHint: {x: 1.77, y: -3, z: 2.86}
   leftHandIkRotationHint: {x: 0, y: 0, z: 0}

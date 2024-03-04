@@ -11,37 +11,37 @@ public class ItemObject : MonoBehaviour
 
     [Header("0 - 100")]
     public float damage; 
-    public float rateOfFire; //âûñòðåëîâ â ñåêóíäó
+    public float rateOfFire; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     public int currentAmmo = 5;
     public int allAmmo = 20;
 
-    [Header("ÄÀËÜÍÎÑÒÜ")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public float range = 50f;
 
-    [Header("ÑÊÎÐÎÑÒÐÅËÜÍÎÑÒÜ")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public int maxLevelRateOfFire = 5;
     public int levelRateOfFire = 0;
 
 
-    [Header("ÓÐÎÍ")]
+    [Header("ï¿½ï¿½ï¿½ï¿½")]
     public int maxLevelDamage = 5;
     public int levelDamage = 0;
 
     public bool isWeapon;
 
-    [Header("ÌÀÊÑÈÌÓÌ Â ÌÀÃÀÇÈÍÅ (0 - 99)")]
-    public int maximumAmmo; //â áàðàáàíå/ìàãàçèíå
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (0 - 99)")]
+    public int maximumAmmo; //ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-    [Header("ÑÅÉ×ÀÑ Â ÌÀÃÀÇÈÍÅ")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public int maxLevelAmmo = 5;
     public int levelAmmo = 0;
 
-    [Header("ÝÊÐÀÍ")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public TextMeshProUGUI allAmmoInGameUi;
     public TextMeshProUGUI currentAmmoInGameUi;
 
-    [Header("ÑÒÐÅËÜÁÀ")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public GameObject bulletPref;
     public Vector3 bulletRotation;
     public GameObject bulletTracer;
@@ -52,7 +52,7 @@ public class ItemObject : MonoBehaviour
 
     public ParticleSystem fireFx;
 
-    [Header("ÍÀÂÅÑÛ")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public GameObject lantern;
     public GameObject light;
     public GameObject aim;
@@ -78,7 +78,7 @@ public class ItemObject : MonoBehaviour
             {
                 onlyOneHit = false;
                 Collider hitObject = hit.collider;
-                Debug.Log("ß ïîïàë â " + hitObject);
+                Debug.Log("ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ " + hitObject);
                 if (hitObject.CompareTag("Enemy"))
                 {
                     if (hitObject.TryGetComponent<EnemyDamage>(out EnemyDamage enemyDamage))
@@ -97,7 +97,7 @@ public class ItemObject : MonoBehaviour
         }
         else
         {
-            //ÇÂÓÊ ÎÑÅ×ÊÈ ÈËÈ ÏÅÐÅÇÀÐßÄÊÀ (ïîòîì ñäåëàþ)
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
         }
 
 
@@ -132,23 +132,23 @@ public class ItemObject : MonoBehaviour
             
         }*/
 
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            if (gameObject.activeInHierarchy)
-            {
-                if (lantern.activeInHierarchy)
-                {
-                    if (!light.activeInHierarchy)
-                    {
-                        light.SetActive(true);
-                    }
-                    else
-                    {
-                        light.SetActive(false);
-                    }
-                }
-            }
-        }
+        // if (Input.GetKeyDown(KeyCode.B))
+        // {
+        //     if (gameObject.activeInHierarchy)
+        //     {
+        //         if (lantern.activeInHierarchy)
+        //         {
+        //             if (!light.activeInHierarchy)
+        //             {
+        //                 light.SetActive(true);
+        //             }
+        //             else
+        //             {
+        //                 light.SetActive(false);
+        //             }
+        //         }
+        //     }
+        // }
 
     }
 

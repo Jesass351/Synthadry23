@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TabToggler : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class TabToggler : MonoBehaviour
 
     private float fixedDeltaTime;
 
-    private CameraController cameraController;
+    private CustomCharacterController customCharacterController;
     private float oldSensitivityX;
     private float oldSensitivityY;
 
@@ -21,36 +22,54 @@ public class TabToggler : MonoBehaviour
 
     private void Start()
     {
-        cameraController = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
-        oldSensitivityX = cameraController.sensitivityX;
-        oldSensitivityY = cameraController.sensitivityY;
-
+        customCharacterController = GameObject.FindGameObjectWithTag("Player").GetComponent<CustomCharacterController>();
+        oldSensitivityX = customCharacterController.xSensitivity;
+        oldSensitivityY = customCharacterController.ySensitivity;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
+        // if (Input.GetKeyDown(KeyCode.Tab))
+        // {
+        //     mainUI.SetActive(false);
+        //     tabUI.SetActive(true);
+        //     Time.timeScale = 0.05f;
+        //     Time.fixedDeltaTime = fixedDeltaTime * Time.timeScale;
+        //     customCharacterController.xSensitivity = 0.002f;
+        //     customCharacterController.ySensitivity = 0.002f;
+        //     Cursor.lockState = CursorLockMode.Confined;
+        // }
+        // if (Input.GetKeyUp(KeyCode.Tab))
+        // {
+        //     mainUI.SetActive(true);
+        //     tabUI.SetActive(false);
+        //     Time.timeScale = 1f;
+        //     Time.fixedDeltaTime = fixedDeltaTime * Time.timeScale;
+        //     customCharacterController.xSensitivity = oldSensitivityX;
+        //     customCharacterController.ySensitivity = oldSensitivityY;
+        //     Cursor.lockState = CursorLockMode.Locked;
+        // }
+    }
+
+    public void OnTabToggle(InputAction.CallbackContext ctx) {
+        bool isHoldingTab = ctx.ReadValueAsButton();
+        if (isHoldingTab) {
             mainUI.SetActive(false);
             tabUI.SetActive(true);
             Time.timeScale = 0.05f;
             Time.fixedDeltaTime = fixedDeltaTime * Time.timeScale;
-            cameraController.sensitivityX = 0.002f;
-            cameraController.sensitivityY = 0.002f;
+            customCharacterController.xSensitivity = 0.002f;
+            customCharacterController.ySensitivity = 0.002f;
             Cursor.lockState = CursorLockMode.Confined;
         }
-        if (Input.GetKeyUp(KeyCode.Tab))
-        {
+        else {
             mainUI.SetActive(true);
-
             tabUI.SetActive(false);
             Time.timeScale = 1f;
             Time.fixedDeltaTime = fixedDeltaTime * Time.timeScale;
-            cameraController.sensitivityX = oldSensitivityX;
-            cameraController.sensitivityY = oldSensitivityY;
+            customCharacterController.xSensitivity = oldSensitivityX;
+            customCharacterController.ySensitivity = oldSensitivityY;
             Cursor.lockState = CursorLockMode.Locked;
-
-
         }
     }
 }

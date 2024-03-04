@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ItemInteraction : MonoBehaviour
 {
@@ -18,20 +19,17 @@ public class ItemInteraction : MonoBehaviour
         inventorySystem = player.GetComponent<InventorySystem>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnItemPickup(InputAction.CallbackContext ctx)
     {
-        RaycastHit hit;
-
-        if (Input.GetKeyDown(KeyCode.F))
+        if (ctx.performed)
         {
+            RaycastHit hit;
             if (Physics.Raycast(cam.position, cam.forward, out hit, takeDistance, itemLayer))
             {
                 if (!hit.collider.GetComponent<ItemObject>())
                     return;
 
-                Debug.Log(hit.collider.gameObject);
-                Debug.Log("123");
+                Debug.Log("Raycast weapon", hit.collider.gameObject);
 
                 inventorySystem.PickUpItem(hit.collider.gameObject);
                 hit.collider.gameObject.SetActive(false);
@@ -41,31 +39,81 @@ public class ItemInteraction : MonoBehaviour
                 if (!hit.collider.GetComponent<BuffObject>())
                     return;
 
-                Debug.Log(hit.collider.gameObject);
+                Debug.Log("Raycast buff", hit.collider.gameObject);
 
                 inventorySystem.PickUpBuff(hit.collider.gameObject);
                 hit.collider.gameObject.SetActive(false);
 
             }
-/*            else if (Physics.Raycast(cam.position, cam.forward, out hit, takeDistance, torchLayer))
-            {
-                Debug.Log(hit.collider.gameObject);
-                torchSystem.addPercentages(hit.collider.gameObject.GetComponent<TorchObject>().torchPeace.Percents);
-                Destroy(hit.collider.gameObject);
-                
-            }*/
+            /*            else if (Physics.Raycast(cam.position, cam.forward, out hit, takeDistance, torchLayer))
+                        {
+                            Debug.Log(hit.collider.gameObject);
+                            torchSystem.addPercentages(hit.collider.gameObject.GetComponent<TorchObject>().torchPeace.Percents);
+                            Destroy(hit.collider.gameObject);
+
+                        }*/
             else if (Physics.Raycast(cam.position, cam.forward, out hit, takeDistance, componentLayer))
             {
-                Debug.Log("4567");
+                Debug.Log("Raycast component", hit.collider.gameObject);
                 inventorySystem.PickUpComponent(hit.collider.gameObject);
                 Destroy(hit.collider.gameObject);
             }
             else
             {
-                //ÌÁ ÊÀÊÎÉ-ÒÎ ÇÂÓÊ ÏÐÎÈÃÐÛÂÀÒÜ?
+                //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?
+                Debug.Log("Raycast null on item pickup");
             }
-           
         }
-        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        // RaycastHit hit;
+
+        // if (Input.GetKeyDown(KeyCode.F))
+        // {
+        //             if (Physics.Raycast(cam.position, cam.forward, out hit, takeDistance, itemLayer))
+        //             {
+        //                 if (!hit.collider.GetComponent<ItemObject>())
+        //                     return;
+
+        //                 Debug.Log(hit.collider.gameObject);
+        //                 Debug.Log("Picked up");
+
+        //                 inventorySystem.PickUpItem(hit.collider.gameObject);
+        //                 hit.collider.gameObject.SetActive(false);
+        //             }
+        //             else if (Physics.Raycast(cam.position, cam.forward, out hit, takeDistance, buffLayer))
+        //             {
+        //                 if (!hit.collider.GetComponent<BuffObject>())
+        //                     return;
+
+        //                 Debug.Log(hit.collider.gameObject);
+
+        //                 inventorySystem.PickUpBuff(hit.collider.gameObject);
+        //                 hit.collider.gameObject.SetActive(false);
+
+        //             }
+        // /*            else if (Physics.Raycast(cam.position, cam.forward, out hit, takeDistance, torchLayer))
+        //             {
+        //                 Debug.Log(hit.collider.gameObject);
+        //                 torchSystem.addPercentages(hit.collider.gameObject.GetComponent<TorchObject>().torchPeace.Percents);
+        //                 Destroy(hit.collider.gameObject);
+
+        //             }*/
+        //             else if (Physics.Raycast(cam.position, cam.forward, out hit, takeDistance, componentLayer))
+        //             {
+        //                 Debug.Log("4567");
+        //                 inventorySystem.PickUpComponent(hit.collider.gameObject);
+        //                 Destroy(hit.collider.gameObject);
+        //             }
+        //             else
+        //             {
+        //                 //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?
+        //             }
+
+        // }
+
     }
 }

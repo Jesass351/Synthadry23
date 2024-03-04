@@ -23,7 +23,7 @@ TagManager:
   - PostFX
   - Water
   - UI
-  - 
+  - Head
   - 
   - 
   - 
@@ -47,7 +47,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - NeedBloom
   - 
   m_SortingLayers:
   - name: Default
